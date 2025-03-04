@@ -96,4 +96,34 @@ progress[value]::-webkit-progress-bar {
 }
 
 progress[value]::-webkit-progress-value {
+  background: #294910;
+}
+
+@media (max-width: 800px) {
+  section {
+    flex-direction: column;
+  }
+
+  figure {
+    flex-grow: 1;
+    width: 100vw;
+  }
+  img {
+    width: auto;
+    height: 100%;
+  }
+
+  figcaption {
+    width: 100%;
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 20px;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 100px;
+  }
 }
