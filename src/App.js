@@ -9,8 +9,18 @@ import avocado from './assets/image6.jpeg';
 
 const images = [fig, mango, cabbage, gaze, peach, avocado];
 
+const Loading = ({ calculatedWidth }) => (
+  <aside>
+    <div className="loading-bar">
+      <label htmlFor="images-loaded"> loading images...</label>
+      <progress id="images-loaded" max="100" value={calculatedWidth}></progress>
+    </div>
+  </aside>
+);
+
 const App = () => {
   const [currentImage, setCurrentImage] = useState(0);
+  const [numLoaded, setNumLoaded] = useState(0);
 
   const handleClick = () => {
     const length = images.length - 1;
@@ -26,6 +36,10 @@ const App = () => {
     });
   };
 
+  const handleImageLoad = () => {
+    setNumLoaded((numLoaded) => numLoaded + 1);
+  };
+
   return (
     <section>
       <header>
@@ -38,10 +52,22 @@ const App = () => {
       </header>
 
       <figure>
+        {numLoaded < images.length && <Loading calculatedWidth={(numLoaded / images.length) * 100} />}
         <figcaption>
           {currentImage + 1} / {images.length}
         </figcaption>
-        <img src={images[currentImage]} alt="fig" onClick={handleClick} />
+
+        {images.map((imageURL, index) => (
+          <img
+            src={imageURL}
+            key={imageURL}
+            alt="fig"
+            onClick={handleClick}
+            onLoad={handleImageLoad}
+            // style={{ opacity: currentImage === index ? 1 : 0 }}
+            className={currentImage === index ? 'display' : 'hide'}
+          />
+        ))}
       </figure>
     </section>
   );
