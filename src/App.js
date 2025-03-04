@@ -27,23 +27,23 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <div className="title">
+    <section>
+      <header>
         <h1>Zesty</h1>
         <h2>
           A photography project
           <br />
           by Ella Fieldling
         </h2>
-      </div>
+      </header>
 
-      <div className="img-container">
-        <h3>
+      <figure>
+        <figcaption>
           {currentImage + 1} / {images.length}
-        </h3>
+        </figcaption>
         <img src={images[currentImage]} alt="fig" onClick={handleClick} />
-      </div>
-    </div>
+      </figure>
+    </section>
   );
 };
 
